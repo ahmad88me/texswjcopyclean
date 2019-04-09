@@ -13,24 +13,35 @@ def main():
     return render_template('main.html', raw=raw, results=result)
 
 
+# def clean(t):
+#     newt = ""
+#     for line in t.split('\n'):
+#         tokens = line.strip().split(' ')
+#         start = 0
+#         if tokens[0].strip().isdigit():
+#             start = 1
+#         #     print "digit: "+tokens[0]
+#         # else:
+#         #     print("not: "+tokens[0])
+#         end = len(tokens)
+#         if tokens[-1].strip().isdigit():
+#             end = -1
+#         #     print("digit: "+tokens[-1])
+#         # else:
+#         #     print("not: "+tokens[-1])
+#         # newt += ' '.join(tokens[1:-1])+"\n"
+#         newt += ' '.join(tokens[start:end])+"\n"
+#     return newt
+
 def clean(t):
     newt = ""
     for line in t.split('\n'):
+        new_line = ""
         tokens = line.strip().split(' ')
-        start = 0
-        if tokens[0].strip().isdigit():
-            start = 1
-        #     print "digit: "+tokens[0]
-        # else:
-        #     print("not: "+tokens[0])
-        end = len(tokens)
-        if tokens[-1].strip().isdigit():
-            end = -1
-        #     print("digit: "+tokens[-1])
-        # else:
-        #     print("not: "+tokens[-1])
-        # newt += ' '.join(tokens[1:-1])+"\n"
-        newt += ' '.join(tokens[start:end])+"\n"
+        for t in tokens:
+            if not t.strip().isdigit():
+                new_line += t + " "
+        newt += new_line + "\n"
     return newt
 
 
